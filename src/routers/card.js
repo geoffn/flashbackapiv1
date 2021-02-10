@@ -32,6 +32,27 @@ cardRouter.get("/card", cors(), async (req, res) => {
     
 })
 
+cardRouter.post("/cardbulk", cors(), async (req, res) => {
+    var cardArray = new Card()
+
+    //console.log(req.body)
+
+    cardArray.collection.insert(req.body, onInsert)
+    // .then(results => console.log(results))
+    // .catch(e => console.log(e))
+
+    function onInsert(err, docs) {
+        if (err) {
+            console.log(err)
+            res.status(400).send(e)
+        } else {
+
+            res.status(201).send()
+        }
+    }
+
+})
+
 
 
 

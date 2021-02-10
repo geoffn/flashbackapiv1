@@ -17,7 +17,7 @@ const cardSchema = new mongoose.Schema({
     },
     alternatives: [
         {
-            type: {
+            altType: {
                 type: String,
                 trim: true
             },
@@ -31,7 +31,7 @@ const cardSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    type: {
+    wordType: {
         type: String,
         trim: true
     }

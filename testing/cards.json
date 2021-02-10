@@ -1,0 +1,73 @@
+[
+    {
+        "spanish": "domingo",
+        "english" : "sunday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "sabado",
+        "english" : "saturday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "martes",
+        "english" : "tueday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "miercoles",
+        "english" : "wednesday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "lunes",
+        "english" : "monday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "viernes",
+        "english" : "friday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish": "jueves",
+        "english" : "thursday",
+        "category" : "calendar",
+        "alternatives" : "",
+        "wordType" : "noun"
+    },
+    {
+        "spanish" : "perezosos",
+        "english" : "lazy",
+        "category" : "mood",
+        "alternatives": {
+            "masculine": "perezosos",
+            "feminine": "perezosas"
+        },
+        "wordType": "adjective"
+    
+    },
+    {
+        "spanish" : "nerviosos",
+        "english" : "nervous",
+        "category" : "mood",
+        "alternatives": { 
+            "masculine": "nerviosos",
+            "feminine": "nerviosas"
+        },
+        "wordType": "adjective"
+    
+    }
+    ]
