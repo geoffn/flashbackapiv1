@@ -53,6 +53,17 @@ cardRouter.post("/cardbulk", cors(), async (req, res) => {
 
 })
 
+cardRouter.get("/cat", cors(), async (req, res) => {
+    try {
+    
+        const card = await Card.distinct( 'category' )
+
+        res.status(200).send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+})
 
 
 
