@@ -66,5 +66,18 @@ cardRouter.get("/cat", cors(), async (req, res) => {
 })
 
 
+cardRouter.get("/cardcat/:category", cors(), async (req, res) => {
+    console.log('got to card cat')
+    try {
+        const card = await Card.find( {category : req.params.category} )
+
+        res.send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
 
 module.exports = cardRouter
