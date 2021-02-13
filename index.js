@@ -28,8 +28,8 @@ var corsOptions = {
 }
 app.use(cors(corsOptions))
 
-// const port = process.env.port || 3001
-const port = process.env.APP_PORT
+// const port = 
+const port = process.env.PORT || 3001
 
 app.use(express.json())
 
