@@ -5,28 +5,26 @@ const mongoose = require('mongoose')
 
 const cardSchema = new mongoose.Schema({
 
-    spanish: {
+    primary_language: {
         type: String,
         trim: true,
         required: true
     },
-    english: {
+    secondary_language: {
         type: String,
         trim: true,
         required: true
     },
-    alternatives: [
-        {
-            altType: {
-                type: String,
-                trim: true
-            },
-            value: {
-                type: String,
-                trim: true
-            }
-        }
-    ],
+    primary_word: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    secondary_word: {
+        type: String,
+        trim: true,
+        required: true
+    },
     category: {
         type: String,
         required: true
@@ -34,12 +32,16 @@ const cardSchema = new mongoose.Schema({
     wordType: {
         type: String,
         trim: true
+    },
+    OwnerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: '000000000000000000000000'
     }
 },
     {
     timestamps: true
 })
 
-const Card = mongoose.model('spanish', cardSchema)
+const Card = mongoose.model('core_language_0001', cardSchema)
 
 module.exports = Card
