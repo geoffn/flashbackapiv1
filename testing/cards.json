@@ -1,77 +1,21 @@
 [
     {
-        "spanish": "domingo",
-        "english" : "sunday",
-        "category" : "calendar",
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "sabado",
-        "english" : "saturday",
-        "category" : "calendar",
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "martes",
-        "english" : "tueday",
-        "category" : "calendar",
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "miercoles",
-        "english" : "wednesday",
-        "category" : "calendar",
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "lunes",
-        "english" : "monday",
-        "category" : "calendar",
+        "primary_language" : "es",
+        "secondary_language" : "en",
+         "primary_word" : "nerviosos",
+         "secondary_word" : "nervous",
+         "category" : "mood",
+         "wordType": "adjective"
+     
+     },
+     {
+        "primary_language" : "es",
+        "secondary_language" : "en",
+         "primary_word" : "domingos",
+         "secondary_word" : "sunday",
+         "category" : "calendar",
+         "wordType": "noun"
+     
+     },
 
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "viernes",
-        "english" : "friday",
-        "category" : "calendar",
-
-        "wordType" : "noun"
-    },
-    {
-        "spanish": "jueves",
-        "english" : "thursday",
-        "category" : "calendar",
-
-        "wordType" : "noun"
-    },
-    {
-        "spanish" : "perezosos",
-        "english" : "lazy",
-        "category" : "mood",
-        "alternatives": [{ 
-            "altType" : "masculine",
-            "value" : "perezosos"
-        },
-        {
-            "altType" : "feminine",
-            "value" : "perezosas"
-        }],
-        "wordType": "adjective"
-    
-    },
-    {
-        "spanish" : "nerviosos",
-        "english" : "nervous",
-        "category" : "mood",
-        "alternatives": [{ 
-            "altType" : "masculine",
-            "value" : "nerviosos"
-        },
-        {
-            "altType" : "feminine",
-            "value" : "nerviosas"
-        }],
-        "wordType": "adjective"
-    
-    }
     ]

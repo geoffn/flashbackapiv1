@@ -1,0 +1,29 @@
+[
+    {
+        "owner_id" : "602da5c112ac640cbf1b1b32",
+        "set_name" : "Spanish 101",
+        "set_description" : "First set of cards",
+        "cards" : [
+            {
+                "id": "602c4f808e1b5b59dfd196e4",
+                "primary_language": "es",
+                "secondary_language": "en",
+                "primary_word": "nerviosos",
+                "secondary_word": "nervous",
+                "category": "mood",
+                "wordType": "adjective"
+            },
+            {
+                "_id": "602c50098e1b5b59dfd196e5",
+                "primary_language": "es",
+                "secondary_language": "en",
+                "primary_word": "domingos",
+                "secondary_word": "sunday",
+                "category": "calendar",
+                "wordType": "noun"
+            }
+        ]
+     
+     }
+
+    ]

@@ -7,6 +7,8 @@ const app = express();
 
 
 const cardRouter = require("./src/routers/card")
+const userRouter = require("./src/routers/user")
+const cardSetRouter = require("./src/routers/cardSet")
 //Import our user router and call
 // const organizationRouter = require("./src/routers/organization");
 // const eventRouter = require("./src/routers/events")
@@ -36,6 +38,8 @@ app.use(express.json())
 // app.use(organizationRouter)
 // app.use(eventRouter)
 app.use(cardRouter)
+app.use(userRouter)
+app.use(cardSetRouter)
 
 
 
