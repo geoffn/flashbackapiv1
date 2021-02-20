@@ -32,6 +32,20 @@ cardSetRouter.get("/cardset", cors(), async (req, res) => {
     
 })
 
+cardSetRouter.get("/cardset/:id", cors(), async (req, res) => {
+    try {
+
+        const cardSet = await CardSet.find({ _id : req.params.id })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
+
 cardSetRouter.post("/cardsetbulk", cors(), async (req, res) => {
     var cardSetArray = new CardSet()
 
