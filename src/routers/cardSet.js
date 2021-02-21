@@ -81,6 +81,27 @@ cardSetRouter.post("/cardsetaddcard", cors(), async (req, res) => {
     //res.status(201).send(cardSet)
 })
 
+cardSetRouter.post("/cardsetremovecard", cors(), async (req, res) => {
+    
+    console.log(req.body.cardId)
+    console.log(req.body.cardSetId)
+    //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
+
+
+    try{
+    const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId },
+    { $pull: { "cards":  { _id: req.body.cardId }   }}
+      )
+    
+      res.status(200).send({ results: responseUpdate })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+
+    //res.status(201).send(cardSet)
+})
 
 cardSetRouter.post("/cardsetbulk", cors(), async (req, res) => {
     var cardSetArray = new CardSet()
