@@ -19,7 +19,7 @@ userRouter.post("/user", cors(), async (req, res) => {
     res.status(201).send(user)
 })
 
-userRouter.get("/user", cors(), async (req, res) => {
+userRouter.get("/users", cors(), async (req, res) => {
         try {
     
             const user = await User.find({ })
@@ -30,6 +30,31 @@ userRouter.get("/user", cors(), async (req, res) => {
             res.send(e + 'error')
         }
     
+})
+
+userRouter.get("/user/:uid", cors(), async (req, res) => {
+    try {
+        
+        const user = await User.find({ uid: req.params.uid })
+
+        res.status(200).send({ results: user })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+userRouter.get("/userbyemail/:email", cors(), async (req, res) => {
+    try {
+        
+        const user = await User.find({ email: req.params.email })
+
+        res.status(200).send({ results: user })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
 })
 
 userRouter.post("/userbulk", cors(), async (req, res) => {

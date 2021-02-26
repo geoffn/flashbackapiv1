@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const app = express();
 
-
+const validateRouter = require('./src/routers/validate')
 const cardRouter = require("./src/routers/card")
 const userRouter = require("./src/routers/user")
 const cardSetRouter = require("./src/routers/cardSet")
@@ -40,6 +40,7 @@ app.use(express.json())
 app.use(cardRouter)
 app.use(userRouter)
 app.use(cardSetRouter)
+app.use(validateRouter)
 
 
 
