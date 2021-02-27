@@ -78,6 +78,27 @@ userRouter.post("/userbulk", cors(), async (req, res) => {
 
 })
 
+userRouter.get("/loginuser/:uid", cors(), async (req, res) => {
+
+        
+        
+        let user = await User.find({ uid: req.params.uid })
+        console.log(user)
+        user.last_login_date = new Date()
+        
+        try {
+            const timeStamp = new Date()
+            const responseUpdate = await User.updateOne( { uid: req.params.uid },
+                { last_login_date : timeStamp })
+           
+           console.log(responseUpdate)
+    
+        } catch (e) {
+            console.log(e)
+        }
+        res.status(200).send(responseUpdate)
+})
+
 
 
 module.exports = userRouter
