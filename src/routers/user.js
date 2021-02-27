@@ -91,12 +91,12 @@ userRouter.get("/loginuser/:uid", cors(), async (req, res) => {
             const responseUpdate = await User.updateOne( { uid: req.params.uid },
                 { last_login_date : timeStamp })
            
-           console.log(responseUpdate)
+           console.log("responseUpdate" + responseUpdate)
     
         } catch (e) {
             console.log(e)
         }
-        res.status(200).send(responseUpdate)
+        res.status(200).send()
 })
 
 
