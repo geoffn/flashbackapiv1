@@ -33,10 +33,24 @@ cardSetRouter.get("/cardset", cors(), async (req, res) => {
     
 })
 
+//Get all info for a specific cardset
 cardSetRouter.get("/cardset/:id", cors(), async (req, res) => {
     try {
 
         const cardSet = await CardSet.find({ _id : req.params.id })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+//Get all cardsets for specific user
+cardSetRouter.get("/cardsetforowner/:uid", cors(), async (req, res) => {
+    try {
+
+        const cardSet = await CardSet.find({ owner_id : req.params.uid })
 
         res.status(200).send({ results: cardSet })
 

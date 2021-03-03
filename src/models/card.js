@@ -29,19 +29,20 @@ const cardSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    wordType: {
+    word_type: {
         type: String,
         trim: true
     },
-    OwnerId: {
-        type: mongoose.Schema.Types.ObjectId,
-        default: '000000000000000000000000'
+    uid: {
+        type: String,
+        require: true,
+        trim: true
     }
 },
     {
     timestamps: true
 })
 
-const Card = mongoose.model('core_language_0001', cardSchema)
+const Card = mongoose.model('core_cards_0001', cardSchema)
 
 module.exports = Card

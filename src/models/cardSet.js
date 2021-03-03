@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 const cardSetSchema = new mongoose.Schema({
 
-    owner_id: {
+    uid: {
         type: String,
         required: true
     },
@@ -18,6 +18,11 @@ const cardSetSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    },
+    public : {
+        type: Boolean,
+        required: true,
+        default: false
     },
     cards:[
         {
