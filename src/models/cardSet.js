@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const cardSetSchema = new mongoose.Schema({
 
     owner_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true
     },
     set_name: {
