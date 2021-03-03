@@ -32,6 +32,20 @@ cardRouter.get("/card", cors(), async (req, res) => {
     
 })
 
+//Get all cards for specific user
+cardRouter.get("/card/:uid", cors(), async (req, res) => {
+    try {
+
+        const card = await Card.find({ uid : req.params.uid })
+
+        res.status(200).send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
 cardRouter.post("/cardbulk", cors(), async (req, res) => {
     var cardArray = new Card()
 
