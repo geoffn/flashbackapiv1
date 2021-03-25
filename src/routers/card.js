@@ -93,5 +93,20 @@ cardRouter.get("/cardcat/:category", cors(), async (req, res) => {
 
 })
 
+cardRouter.get("/cardsearch/:uid/:search", cors(), async (req, res) => {
+    try {
+        console.log(req.params.uid + ' ' + req.params.search)
+        const query = ` uid: '${req.params.uid}', primary_word: {$regex: '${req.params.search}'}`
+        console.log(query)
+        const card = await Card.find({ uid: req.params.uid, primary_word: {$regex: req.params.search} })
+
+        res.status(200).send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
 
 module.exports = cardRouter
