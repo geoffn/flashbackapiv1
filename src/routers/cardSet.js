@@ -23,7 +23,7 @@ cardSetRouter.post("/cardset", cors(), async (req, res) => {
 cardSetRouter.get("/cardset", cors(), async (req, res) => {
         try {
     
-            const cardSet = await CardSet.find({ })
+            const cardSet = await CardSet.find({ }).sort({last_accessed: -1})
     
             res.status(200).send({ results: cardSet })
     
@@ -38,6 +38,24 @@ cardSetRouter.get("/cardset/:id", cors(), async (req, res) => {
     try {
 
         const cardSet = await CardSet.find({ _id : req.params.id })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
+cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
+    try {
+        const timeStamp = new Date()
+        const cardSet = await CardSet.updateOne({ _id : req.params.id },
+            {$set: {
+                last_accessed: timeStamp
+            },
+                $inc: {access_count: 1}
+            })
 
         res.status(200).send({ results: cardSet })
 
