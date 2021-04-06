@@ -24,6 +24,16 @@ const cardSetSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    access_count: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    last_accessed: {
+        type: Date,
+        require: true,
+        default: new Date()
+    },
     cards:[
         {
             primary_language: {

@@ -37,6 +37,11 @@ const cardSchema = new mongoose.Schema({
         type: String,
         require: true,
         trim: true
+    },
+    hidden: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 },
     {
