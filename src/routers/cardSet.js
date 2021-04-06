@@ -156,5 +156,17 @@ cardSetRouter.post("/cardsetbulk", cors(), async (req, res) => {
 
 })
 
+cardSetRouter.delete("/cardsetdelete/:id", cors(), async (req, res) => {
+   // const ID = req.params.id
+    try {
+        //console.log('ID ' + req.params.id)
+        const cardSet = await CardSet.findByIdAndDelete(req.params.id)
+        //console.log(cardSet)
+        res.status(200).send(cardSet)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+
+})
 
 module.exports = cardSetRouter

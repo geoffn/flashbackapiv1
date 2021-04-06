@@ -108,5 +108,18 @@ cardRouter.get("/cardsearch/:uid/:search", cors(), async (req, res) => {
 
 })
 
+cardRouter.patch("/cardhide/:id", cors(), async (req, res) => {
+    try {
+        console.log(req.params.id)
+        
+        const card = await Card.findOneAndUpdate({ _id: req.params.id }, {hidden:true} )
+
+        res.status(200).send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
 
 module.exports = cardRouter
