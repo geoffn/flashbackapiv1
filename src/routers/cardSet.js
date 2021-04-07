@@ -68,7 +68,7 @@ cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
 cardSetRouter.get("/cardsetforowner/:uid", cors(), async (req, res) => {
     try {
 
-        const cardSet = await CardSet.find({ uid : req.params.uid })
+        const cardSet = await CardSet.find({ uid : req.params.uid }).sort({last_accessed: -1})
 
         res.status(200).send({ results: cardSet })
 
