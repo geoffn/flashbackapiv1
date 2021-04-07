@@ -8,12 +8,14 @@ const cardSchema = new mongoose.Schema({
     primary_language: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: 'NA'
     },
     secondary_language: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: 'NA'
     },
     primary_word: {
         type: String,
@@ -27,11 +29,13 @@ const cardSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        default: 'NA'
     },
     word_type: {
         type: String,
-        trim: true
+        trim: true,
+        default: 'NA'
     },
     uid: {
         type: String,
