@@ -3,6 +3,7 @@ const cardSetRouter = new express.Router
 const CardSet = require('../models/cardSet')
 const cors = require('cors')
 const Card = require('../models/card')
+const authToken = require('../helpers/token')
 
 cardSetRouter.post("/cardset", cors(), async (req, res) => {
     const cardSet = new CardSet({
@@ -21,6 +22,7 @@ cardSetRouter.post("/cardset", cors(), async (req, res) => {
 })
 
 cardSetRouter.get("/cardset", cors(), async (req, res) => {
+    
         try {
     
             const cardSet = await CardSet.find({ }).sort({last_accessed: -1})
@@ -65,7 +67,8 @@ cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
 
 })
 //Get all cardsets for specific user
-cardSetRouter.get("/cardsetforowner/:uid", cors(), async (req, res) => {
+cardSetRouter.get("/cardsetforowner/:uid", cors(),authToken.authenticateToken, async (req, res) => {
+    console.log(req.uid)
     try {
 
         const cardSet = await CardSet.find({ uid : req.params.uid }).sort({last_accessed: -1})
