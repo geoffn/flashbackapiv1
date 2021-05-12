@@ -68,7 +68,7 @@ cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
 })
 //Get all cardsets for specific user
 cardSetRouter.get("/cardsetforowner/:uid", cors(),authToken.authenticateToken, async (req, res) => {
-    console.log(req.uid)
+    console.log("UID:" + req.uid)
     try {
 
         const cardSet = await CardSet.find({ uid : req.params.uid }).sort({last_accessed: -1})
