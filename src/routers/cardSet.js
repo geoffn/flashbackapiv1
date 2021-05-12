@@ -116,7 +116,7 @@ cardSetRouter.post("/cardsetaddcard", cors(), async (req, res) => {
     //res.status(201).send(cardSet)
 })
 
-cardSetRouter.post("/cardsetremovecard", cors(), async (req, res) => {
+cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, async (req, res) => {
     
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
@@ -124,7 +124,7 @@ cardSetRouter.post("/cardsetremovecard", cors(), async (req, res) => {
 
 
     try{
-    const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId },
+    const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId, uid : req.uid },
     { $pull: { "cards":  { _id: req.body.cardId }   }}
       )
     
