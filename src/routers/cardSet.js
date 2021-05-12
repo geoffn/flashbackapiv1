@@ -67,7 +67,7 @@ cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
 
 })
 //Get all cardsets for specific user
-cardSetRouter.get("/cardsetforowner/:uid", cors(),authToken.authenticateToken, async (req, res) => {
+cardSetRouter.get("/cardsetforowner", cors(),authToken.authenticateToken, async (req, res) => {
     console.log("UID:" + req.uid)
     try {
 
