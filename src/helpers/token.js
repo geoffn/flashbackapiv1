@@ -8,7 +8,7 @@ function authenticateToken(req, res, next) {
   if (token == null) return res.sendStatus(401)
 
   jwt.verify(token, process.env.apiJWT, (err, uid) => {
-    console.log("ERR:" + err)
+    console.log("ERR:" + err + " TOKEN:" + token)
     if (err) return res.sendStatus(403)
     req.uid = uid
     console.log("token uid:" + req.uid)
