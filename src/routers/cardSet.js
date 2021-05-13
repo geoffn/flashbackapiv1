@@ -3,6 +3,7 @@ const cardSetRouter = new express.Router
 const CardSet = require('../models/cardSet')
 const cors = require('cors')
 const Card = require('../models/card')
+const authToken = require('../helpers/token')
 
 cardSetRouter.post("/cardset", cors(), async (req, res) => {
     const cardSet = new CardSet({
@@ -21,6 +22,7 @@ cardSetRouter.post("/cardset", cors(), async (req, res) => {
 })
 
 cardSetRouter.get("/cardset", cors(), async (req, res) => {
+    
         try {
     
             const cardSet = await CardSet.find({ }).sort({last_accessed: -1})
@@ -34,10 +36,11 @@ cardSetRouter.get("/cardset", cors(), async (req, res) => {
 })
 
 //Get all info for a specific cardset
-cardSetRouter.get("/cardset/:id", cors(), async (req, res) => {
+cardSetRouter.get("/cardset/:id", cors(),authToken.authenticateToken, async (req, res) => {
+    console.log("CARDSET UID:" + req.uid)
     try {
 
-        const cardSet = await CardSet.find({ _id : req.params.id })
+        const cardSet = await CardSet.find({ _id : req.params.id, uid : req.uid })
 
         res.status(200).send({ results: cardSet })
 
@@ -65,10 +68,11 @@ cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
 
 })
 //Get all cardsets for specific user
-cardSetRouter.get("/cardsetforowner/:uid", cors(), async (req, res) => {
+cardSetRouter.get("/cardsetforowner", cors(),authToken.authenticateToken, async (req, res) => {
+    console.log("UID:" + req.uid)
     try {
 
-        const cardSet = await CardSet.find({ uid : req.params.uid }).sort({last_accessed: -1})
+        const cardSet = await CardSet.find({ uid : req.uid }).sort({last_accessed: -1})
 
         res.status(200).send({ results: cardSet })
 
@@ -113,7 +117,7 @@ cardSetRouter.post("/cardsetaddcard", cors(), async (req, res) => {
     //res.status(201).send(cardSet)
 })
 
-cardSetRouter.post("/cardsetremovecard", cors(), async (req, res) => {
+cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, async (req, res) => {
     
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
@@ -121,7 +125,7 @@ cardSetRouter.post("/cardsetremovecard", cors(), async (req, res) => {
 
 
     try{
-    const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId },
+    const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId, uid : req.uid },
     { $pull: { "cards":  { _id: req.body.cardId }   }}
       )
     

@@ -6,14 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
-    "start" : "node index.js"
+    "start": "node index.js",
+    "build:dev": "env-cmd -f .env.development npm run build && firebase deploy -P dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
+    "firebase-tools": "^9.10.2",
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7"
   }
