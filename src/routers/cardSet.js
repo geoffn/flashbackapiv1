@@ -36,10 +36,10 @@ cardSetRouter.get("/cardset", cors(), async (req, res) => {
 })
 
 //Get all info for a specific cardset
-cardSetRouter.get("/cardset/:id", cors(), async (req, res) => {
+cardSetRouter.get("/cardset/:id", cors(),authToken.authenticateToken, async (req, res) => {
     try {
 
-        const cardSet = await CardSet.find({ _id : req.params.id })
+        const cardSet = await CardSet.find({ _id : req.params.id, uid : req.uid })
 
         res.status(200).send({ results: cardSet })
 
