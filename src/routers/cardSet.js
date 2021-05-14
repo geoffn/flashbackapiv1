@@ -41,7 +41,7 @@ cardSetRouter.get("/cardset/:id", cors(),authToken.authenticateToken, async (req
     try {
 
         const cardSet = await CardSet.find({ _id : req.params.id, uid : req.uid })
-
+        
         res.status(200).send({ results: cardSet })
 
     } catch (e) {
