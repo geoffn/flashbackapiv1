@@ -2,8 +2,9 @@ const express = require('express')
 const cardRouter = new express.Router
 const Card = require('../models/card')
 const cors = require('cors')
+const authToken = require('../helpers/token')
 
-cardRouter.post("/card", cors(), async (req, res) => {
+cardRouter.post("/card", cors(),authToken.authenticateToken, async (req, res) => {
     const card = new Card({
         ...req.body
     })
@@ -19,7 +20,7 @@ cardRouter.post("/card", cors(), async (req, res) => {
     res.status(201).send(card)
 })
 
-cardRouter.get("/card", cors(), async (req, res) => {
+cardRouter.get("/card", cors(),authToken.authenticateToken, async (req, res) => {
         try {
     
             const card = await Card.find({ })
@@ -33,7 +34,7 @@ cardRouter.get("/card", cors(), async (req, res) => {
 })
 
 //Get all cards for specific user
-cardRouter.get("/card/:uid", cors(), async (req, res) => {
+cardRouter.get("/card/:uid", cors(),authToken.authenticateToken, async (req, res) => {
     try {
 
         const card = await Card.find({ uid : req.params.uid })
@@ -46,7 +47,7 @@ cardRouter.get("/card/:uid", cors(), async (req, res) => {
 
 })
 
-cardRouter.post("/cardbulk", cors(), async (req, res) => {
+cardRouter.post("/cardbulk", cors(), authToken.authenticateToken,async (req, res) => {
     var cardArray = new Card()
 
     //console.log(req.body)
@@ -67,7 +68,7 @@ cardRouter.post("/cardbulk", cors(), async (req, res) => {
 
 })
 
-cardRouter.get("/cat", cors(), async (req, res) => {
+cardRouter.get("/cat", cors(),authToken.authenticateToken, async (req, res) => {
     try {
     
         const card = await Card.distinct( 'category' )
@@ -80,7 +81,7 @@ cardRouter.get("/cat", cors(), async (req, res) => {
 })
 
 
-cardRouter.get("/cardcat/:category", cors(), async (req, res) => {
+cardRouter.get("/cardcat/:category", cors(),authToken.authenticateToken, async (req, res) => {
     console.log('got to card cat')
     try {
         const card = await Card.find( {category : req.params.category} )
@@ -93,7 +94,7 @@ cardRouter.get("/cardcat/:category", cors(), async (req, res) => {
 
 })
 
-cardRouter.get("/cardsearch/:uid/:search", cors(), async (req, res) => {
+cardRouter.get("/cardsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         console.log(req.params.uid + ' ' + req.params.search)
         const query = ` uid: '${req.params.uid}', primary_word: {$regex: '${req.params.search}'}`
@@ -108,7 +109,7 @@ cardRouter.get("/cardsearch/:uid/:search", cors(), async (req, res) => {
 
 })
 
-cardRouter.patch("/cardhide/:id", cors(), async (req, res) => {
+cardRouter.patch("/cardhide/:id", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         console.log(req.params.id)
         

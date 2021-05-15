@@ -5,7 +5,7 @@ const cors = require('cors')
 const Card = require('../models/card')
 const authToken = require('../helpers/token')
 
-cardSetRouter.post("/cardset", cors(), async (req, res) => {
+cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
     const cardSet = new CardSet({
         ...req.body
     })
@@ -21,7 +21,7 @@ cardSetRouter.post("/cardset", cors(), async (req, res) => {
     res.status(201).send(cardSet)
 })
 
-cardSetRouter.get("/cardset", cors(), async (req, res) => {
+cardSetRouter.get("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
     
         try {
     
@@ -50,7 +50,7 @@ cardSetRouter.get("/cardset/:id", cors(),authToken.authenticateToken, async (req
 
 })
 
-cardSetRouter.get("/cardsetaccessed/:id", cors(), async (req, res) => {
+cardSetRouter.get("/cardsetaccessed/:id", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         const timeStamp = new Date()
         const cardSet = await CardSet.updateOne({ _id : req.params.id },
@@ -82,7 +82,7 @@ cardSetRouter.get("/cardsetforowner", cors(),authToken.authenticateToken, async 
 
 })
 
-cardSetRouter.post("/cardsetaddcard", cors(), async (req, res) => {
+cardSetRouter.post("/cardsetaddcard", cors(),authToken.authenticateToken, async (req, res) => {
     
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
@@ -139,7 +139,7 @@ cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, asy
     //res.status(201).send(cardSet)
 })
 
-cardSetRouter.post("/cardsetbulk", cors(), async (req, res) => {
+cardSetRouter.post("/cardsetbulk", cors(),authToken.authenticateToken, async (req, res) => {
     var cardSetArray = new CardSet()
 
     //console.log(req.body)
@@ -160,7 +160,7 @@ cardSetRouter.post("/cardsetbulk", cors(), async (req, res) => {
 
 })
 
-cardSetRouter.delete("/cardsetdelete/:id", cors(), async (req, res) => {
+cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, async (req, res) => {
    // const ID = req.params.id
     try {
         //console.log('ID ' + req.params.id)

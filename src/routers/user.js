@@ -2,8 +2,9 @@ const express = require('express')
 const userRouter = new express.Router
 const User = require('../models/user')
 const cors = require('cors')
+const authToken = require('../helpers/token')
 
-userRouter.post("/user", cors(), async (req, res) => {
+userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) => {
     const user = new User({
         ...req.body
     })
@@ -19,7 +20,7 @@ userRouter.post("/user", cors(), async (req, res) => {
     res.status(201).send(user)
 })
 
-userRouter.get("/users", cors(), async (req, res) => {
+userRouter.get("/users", cors(),authToken.authenticateToken, async (req, res) => {
         try {
     
             const user = await User.find({ })
@@ -32,7 +33,7 @@ userRouter.get("/users", cors(), async (req, res) => {
     
 })
 
-userRouter.get("/user/:uid", cors(), async (req, res) => {
+userRouter.get("/user/:uid", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         
         const user = await User.find({ uid: req.params.uid })
@@ -44,7 +45,7 @@ userRouter.get("/user/:uid", cors(), async (req, res) => {
     }
 
 })
-userRouter.get("/userbyemail/:email", cors(), async (req, res) => {
+userRouter.get("/userbyemail/:email", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         
         const user = await User.find({ email: req.params.email })
@@ -57,7 +58,7 @@ userRouter.get("/userbyemail/:email", cors(), async (req, res) => {
 
 })
 
-userRouter.post("/userbulk", cors(), async (req, res) => {
+userRouter.post("/userbulk", cors(),authToken.authenticateToken, async (req, res) => {
     var userArray = new User()
 
     //console.log(req.body)
@@ -78,7 +79,7 @@ userRouter.post("/userbulk", cors(), async (req, res) => {
 
 })
 
-userRouter.get("/loginuser/:uid", cors(), async (req, res) => {
+userRouter.get("/loginuser/:uid", cors(), authToken.authenticateToken, async (req, res) => {
 
         
         

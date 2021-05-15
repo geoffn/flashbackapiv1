@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/logging-bunyan": "^3.0.2",
+    "bunyan": "^1.8.15",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "env-cmd": "^10.1.0",
