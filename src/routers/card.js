@@ -2,7 +2,8 @@ const express = require('express')
 const cardRouter = new express.Router
 const Card = require('../models/card')
 const cors = require('cors')
-const authToken = require('../helpers/token')
+const authToken = require('../helpers/token') 
+
 
 cardRouter.post("/card", cors(),authToken.authenticateToken, async (req, res) => {
     const card = new Card({
