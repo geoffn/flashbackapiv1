@@ -28,9 +28,9 @@ const cardSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
-        required: true,
-        default: 'NA'
+        type: String
+        // required: true,
+        //default: 'NA'
     },
     word_type: {
         type: String,
