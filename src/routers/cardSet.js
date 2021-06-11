@@ -6,6 +6,7 @@ const Card = require('../models/card')
 const authToken = require('../helpers/token')
 
 cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
+
     const cardSet = new CardSet({
         ...req.body
     })
@@ -122,7 +123,7 @@ cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, asy
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
-
+    console.log("CARDSET UID:" + req.uid)
 
     try{
     const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId, uid : req.uid },
