@@ -180,7 +180,7 @@ cardSetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateTo
         console.log(req.params.uid + ' ' + req.params.search)
         const query = ` uid: '${req.params.uid}', set_name: {$regex: '${req.params.search}'}`
         console.log(query)
-        const cardSet = await Card.find({ uid: req.params.uid, set_name: {$regex: req.params.search} })
+        const cardSet = await CardSet.find({ uid: req.params.uid, set_name: {$regex: req.params.search} })
 
         res.status(200).send({ results: cardSet })
 
