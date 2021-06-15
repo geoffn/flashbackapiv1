@@ -175,7 +175,7 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
 
 })
 
-cardsetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
+cardSetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         console.log(req.params.uid + ' ' + req.params.search)
         const query = ` uid: '${req.params.uid}', set_name: {$regex: '${req.params.search}'}`
