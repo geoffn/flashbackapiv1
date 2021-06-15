@@ -122,6 +122,7 @@ cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, asy
     
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
+    //if cardid and cardsetid are not supplied then response should require
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
     console.log("CARDSET UID:" + req.uid)
 
@@ -170,6 +171,21 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
         res.status(200).send(cardSet)
     } catch (e) {
         res.status(500).send(e)
+    }
+
+})
+
+cardsetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+        console.log(req.params.uid + ' ' + req.params.search)
+        const query = ` uid: '${req.params.uid}', set_name: {$regex: '${req.params.search}'}`
+        console.log(query)
+        const cardSet = await Card.find({ uid: req.params.uid, set_name: {$regex: req.params.search} })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
     }
 
 })
