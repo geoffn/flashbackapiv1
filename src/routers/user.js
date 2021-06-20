@@ -89,7 +89,7 @@ userRouter.post("/loginuser", cors(), authToken.authenticateToken, async (req, r
     
     try {
         const timeStamp = new Date()
-        const responseUpdate = await User.updateOne( { uid: req.params.uid },
+        const responseUpdate = await User.updateOne( { uid: req.body.uid },
             { last_login_date : timeStamp })
        
        console.log("responseUpdate" + responseUpdate)
