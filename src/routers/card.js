@@ -48,6 +48,19 @@ cardRouter.get("/card/:uid", cors(),authToken.authenticateToken, async (req, res
 
 })
 
+cardRouter.get("/cardbyowner", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+
+        const card = await Card.find({ uid : req.uid })
+
+        res.status(200).send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
 cardRouter.post("/cardbulk", cors(), authToken.authenticateToken,async (req, res) => {
     var cardArray = new Card()
 
@@ -88,6 +101,21 @@ cardRouter.get("/cardcat/:category", cors(),authToken.authenticateToken, async (
         const card = await Card.find( {category : req.params.category} )
 
         res.send({ results: card })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
+cardRouter.post("/cardfilter", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+        console.log(req.uid + ' ' + req.body.search)
+        const query = ` uid: '${req.uid}', primary_word: {$regex: '${req.body.search}'}`
+        console.log(query)
+        const card = await Card.find({ uid: req.uid, primary_word: {$regex: req.body.search} })
+
+        res.status(200).send({ results: card })
 
     } catch (e) {
         res.send(e + 'error')
