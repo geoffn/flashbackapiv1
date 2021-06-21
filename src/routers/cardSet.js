@@ -175,6 +175,21 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
 
 })
 
+cardSetRouter.post("/cardsetfilter", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+        console.log(req.uid + ' ' + req.params.search)
+        const query = ` uid: '${req.uid}', set_name: {$regex: '${req.body.search}'}`
+        console.log(query)
+        const cardSet = await CardSet.find({ uid: req.uid, set_name: {$regex: req.body.search} })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
 cardSetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
     try {
         console.log(req.params.uid + ' ' + req.params.search)
