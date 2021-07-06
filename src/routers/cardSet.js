@@ -6,6 +6,7 @@ const Card = require('../models/card')
 const authToken = require('../helpers/token')
 
 cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
+
     const cardSet = new CardSet({
         ...req.body
     })
@@ -121,8 +122,9 @@ cardSetRouter.post("/cardsetremovecard", cors(),authToken.authenticateToken, asy
     
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
+    //if cardid and cardsetid are not supplied then response should require
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
-
+    console.log("CARDSET UID:" + req.uid)
 
     try{
     const responseUpdate = await CardSet.updateOne( { _id: req.body.cardSetId, uid : req.uid },
@@ -169,6 +171,36 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
         res.status(200).send(cardSet)
     } catch (e) {
         res.status(500).send(e)
+    }
+
+})
+
+cardSetRouter.post("/cardsetfilter", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+        console.log(req.uid + ' ' + req.body.search)
+        const query = ` uid: '${req.uid}', set_name: {$regex: '${req.body.search}'}`
+        console.log(query)
+        const cardSet = await CardSet.find({ uid: req.uid, set_name: {$regex: req.body.search} })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
+    }
+
+})
+
+cardSetRouter.get("/cardsetsearch/:uid/:search", cors(),authToken.authenticateToken, async (req, res) => {
+    try {
+        console.log(req.params.uid + ' ' + req.params.search)
+        const query = ` uid: '${req.params.uid}', set_name: {$regex: '${req.params.search}'}`
+        console.log(query)
+        const cardSet = await CardSet.find({ uid: req.params.uid, set_name: {$regex: req.params.search} })
+
+        res.status(200).send({ results: cardSet })
+
+    } catch (e) {
+        res.send(e + 'error')
     }
 
 })
