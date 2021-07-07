@@ -17,7 +17,7 @@ const cardSetSchema = new mongoose.Schema({
     set_description: {
         type: String,
         trim: true,
-        required: true
+        required: false
     },
     public : {
         type: Boolean,
