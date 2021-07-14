@@ -15,7 +15,7 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
     try {
         let existingUser = await User.findOne({ uid: req.body.uid })
         console.log(existingUser)
-        if(existingUser.uid){
+        if(existingUser){
             const timeStamp = new Date()
 
             existingUser.email = req.body.email
