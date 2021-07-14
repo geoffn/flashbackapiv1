@@ -1,5 +1,6 @@
 require("dotenv").config();
 require('./src/db/mongoose')
+const Sentry = require("@sentry/node");
 const express = require("express")
 const cors = require('cors')
 
@@ -21,6 +22,8 @@ const cardSetRouter = require("./src/routers/cardSet")
 //     crossDomain: true
 // }
 // app.use(cors(corsOptions))
+Sentry.init({ dsn: "https://1494e4ef11a9416d8a14dbdb6bb8a7ac@o918401.ingest.sentry.io/5861530" });
+app.use(Sentry.Handlers.requestHandler());
 
 var corsOptions = {
     origin: '*',
