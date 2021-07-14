@@ -26,7 +26,7 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
             console.log('ExistingUser: ' + req.body)
 
             res.status(200).send(existingUser)
-            next()
+            
 
         } else {
             await user.save()
@@ -34,7 +34,7 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
             console.log('NewUser: ' + req.body)
 
             res.status(201).send(user)
-            next()
+            
         }
 
     } catch(e){
@@ -43,7 +43,6 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
     }
 
 
-    res.status(500).send(user)
 })
 
 userRouter.get("/users", cors(),authToken.authenticateToken, async (req, res) => {
