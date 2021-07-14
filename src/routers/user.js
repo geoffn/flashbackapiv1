@@ -30,7 +30,7 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
             
 
         } else {
-            //await user.save()
+            await user.save()
 
             console.log('NewUser: ' + req.body)
 
