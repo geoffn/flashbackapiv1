@@ -3,21 +3,47 @@ const userRouter = new express.Router
 const User = require('../models/user')
 const cors = require('cors')
 const authToken = require('../helpers/token')
+const Sentry = require('@sentry/node')
+
 
 userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) => {
     const user = new User({
         ...req.body
     })
 
+    //See if user exists.  If not create and return user.  Otherwise update and return user.
     try {
-        await user.save()
+        let existingUser = await User.find({ uid: req.body.uid })
+        if(existingUser.uid){
+            const timeStamp = new Date()
 
-        console.log(req.body)
-    } catch (e) {
+            existingUser.email = req.body.email
+            existingUser.display_name = req.body.display_name
+            existingUser.photo_url = req.body.photo_url
+            existingUser.last_login_date = timeStamp
+
+            existingUser.save()
+            console.log('ExistingUser: ' + req.body)
+
+            res.status(200).send(existingUser)
+            next()
+
+        } else {
+            await user.save()
+
+            console.log('NewUser: ' + req.body)
+
+            res.status(201).send(user)
+            next()
+        }
+
+    } catch(e){
         console.log(e)
+        res.send('Error: ' + e)
     }
 
-    res.status(201).send(user)
+
+    res.status(500).send(user)
 })
 
 userRouter.get("/users", cors(),authToken.authenticateToken, async (req, res) => {

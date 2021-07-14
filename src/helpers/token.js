@@ -6,7 +6,9 @@ function authenticateToken(req, res, next) {
   const token = authHeader && authHeader.split(' ')[1]
   console.log("AUTHHEADER:" + authHeader)
   console.log("Token:" + token)
-  if (token == null) return res.sendStatus(401)
+  if (token == null){
+    return res.sendStatus(401)
+  }
 
   jwt.verify(token, process.env.apiJWT, (err, uid) => {
     console.log("ERR:" + err + " TOKEN:" + token)
