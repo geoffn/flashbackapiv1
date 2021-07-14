@@ -13,7 +13,7 @@ userRouter.post("/user", cors(), authToken.authenticateToken, async (req, res) =
 
     //See if user exists.  If not create and return user.  Otherwise update and return user.
     try {
-        let existingUser = await User.find({ uid: req.body.uid })
+        let existingUser = await User.findOne({ uid: req.body.uid })
         console.log(existingUser)
         if(existingUser.uid){
             const timeStamp = new Date()
