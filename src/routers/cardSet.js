@@ -23,14 +23,14 @@ cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, r
 })
 
 cardSetRouter.put("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
-    print("CardID:" + req.body.id)
+    console.log("CardID:" + req.body.id)
     try{
     const cardSet = await CardSet.updateOne({ _id : req.body.id },
             {$set: {
             set_name: req.body.set_name,
             set_description: req.body.set_description,
             },})
-        print(cardSet);
+        console.log(cardSet);
         res.status(201).send(cardSet)
     } catch(e){
         res.send(e + 'error')
