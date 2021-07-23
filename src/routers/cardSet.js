@@ -29,7 +29,7 @@ try{
             set_name: req.body.set_name,
             set_description: req.body.set_description,
         },})
-
+        print(cardSet);
     res.status(201).send(cardSet)
 } catch(e){
     res.send(e + 'error')
