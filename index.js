@@ -45,7 +45,7 @@ app.use(userRouter)
 app.use(cardSetRouter)
 app.use(validateRouter)
 
-
+app.use(Sentry.Handlers.errorHandler());
 
 
 //app.use('/api/user', userRouter);

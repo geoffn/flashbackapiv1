@@ -22,6 +22,20 @@ cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, r
     res.status(201).send(cardSet)
 })
 
+cardSetRouter.put("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
+try{
+    const cardSet = await CardSet.updateOne({ _id : req.params.id },
+        {$set: {
+            set_name: req.body.set_name,
+            set_description: req.body.set_description,
+        },})
+
+    res.status(201).send(cardSet)
+} catch(e){
+    res.send(e + 'error')
+}
+})
+
 cardSetRouter.get("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
     
         try {
@@ -175,20 +189,6 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
 
 })
 
-// cardSetRouter.post("/cardsetfilter", cors(),authToken.authenticateToken, async (req, res) => {
-//     try {
-//         console.log(req.uid + ' ' + req.body.search)
-//         const query = ` uid: '${req.uid}', set_name: {$regex: '${req.body.search}'}`
-//         console.log(query)
-//         const cardSet = await CardSet.find({ uid: req.uid, set_name: {$regex: req.body.search} })
-
-//         res.status(200).send({ results: cardSet })
-
-//     } catch (e) {
-//         res.send(e + 'error')
-//     }
-
-// })
 
 cardSetRouter.get("/cardsetfilter", cors(),authToken.authenticateToken, async (req, res) => {
     try {
