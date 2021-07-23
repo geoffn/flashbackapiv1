@@ -139,7 +139,7 @@ cardSetRouter.put("/cardseteditcard", cors(),authToken.authenticateToken, async 
     console.log(req.body.cardSetId)
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
     try{
-    const responseUpdate = await Card.findOneAndUpdate({_id: cardSetId, uid: req.uid, notifications: {$elemMatch: {_id: cardId}}},
+    const responseUpdate = await Card.findOneAndUpdate({_id: cardSetId, uid: req.uid, cards: {$elemMatch: {_id: cardId}}},
         {$set: {'cards.$.primary_word': req.body.primary_word,
                 'cards.$.secondary_word': req.body.secondary_word,
             'cards.$.category': req.body.category}}, // list fields you like to change
