@@ -24,7 +24,7 @@ cardSetRouter.post("/cardset", cors(),authToken.authenticateToken, async (req, r
 
 cardSetRouter.put("/cardset", cors(),authToken.authenticateToken, async (req, res) => {
 try{
-    const cardSet = await CardSet.updateOne({ _id : req.params.id },
+    const cardSet = await CardSet.updateOne({ _id : req.body.id },
         {$set: {
             set_name: req.body.set_name,
             set_description: req.body.set_description,
