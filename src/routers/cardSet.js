@@ -138,8 +138,8 @@ cardSetRouter.put("/cardseteditcard", cors(),authToken.authenticateToken, async 
     console.log(req.body.cardId)
     console.log(req.body.cardSetId)
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
-    const test = await Card.findOne({_id: req.body.cardSetId, uid: req.uid, cards: {$elemMatch: {_id: req.body.cardId}}})
-        console.log("test: " + test)
+    const test = "{_id: " + req.body.cardSetId +", uid: " + req.uid + ", cards: {$elemMatch: {_id: " + req.body.cardId + "}}})"       
+     console.log("test: " + test)
     try{
         
     const responseUpdate = await Card.findOneAndUpdate({_id: req.body.cardSetId, uid: req.uid, cards: {$elemMatch: {_id: req.body.cardId}}},
