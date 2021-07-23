@@ -145,6 +145,7 @@ cardSetRouter.put("/cardseteditcard", cors(),authToken.authenticateToken, async 
             'cards.$.category': req.body.category}}, // list fields you like to change
         {'new': true, 'safe': true});
 
+        console.log(responseUpdate)
       res.status(200).send({ results: responseUpdate })
 
     } catch (e) {
