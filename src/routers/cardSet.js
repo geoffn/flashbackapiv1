@@ -214,7 +214,7 @@ cardSetRouter.delete("/cardsetdelete/:id", cors(),authToken.authenticateToken, a
    // const ID = req.params.id
     try {
         //console.log('ID ' + req.params.id)
-        const cardSet = await CardSet.findByIdAndDelete(req.params.id)
+        const cardSet = await CardSet.deleteOne({_id: req.params.id, uid : req.uid})
         //console.log(cardSet)
         res.status(200).send(cardSet)
     } catch (e) {
