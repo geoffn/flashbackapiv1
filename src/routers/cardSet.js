@@ -138,14 +138,15 @@ cardSetRouter.put("/cardseteditcard", cors(),authToken.authenticateToken, async 
     console.log(req.body.cardId)
     console.log(req.body.cardSetId, req.uid)
     //const cardSet = await CardSet.find({ _id : req.body.cardSetId })
-    const testCard = await CardSet.findOne({ _id: req.body.cardSetId, uid: req.uid })
+    const testCard = await CardSet.findOne({ _id: req.body.cardSetId, uid: req.uid,cards: {$elemMatch: {cards_id: req.body.cardId}} })
     console.log(testCard)
+    
     // await testCard.updateOne({'cards._id': req.body.cardId},
     //     {'$set': {'cards.$.primary_word': req.body.primary_word,
     //     'cards.$.secondary_word': req.body.secondary_word,
     // 'cards.$.category': req.body.category}})
 
-    const responseUpdate1 = await CardSet.findOneAndUpdate({_id: req.body.cardSetId, uid: req.uid, cards: {$elemMatch: {cards_id: req.body.cardId}}},
+    const responseUpdate1 = await CardSet.findOneAndUpdate({_id: req.body.cardSetId, uid: req.uid, "cards._id": req.body.cardId},
         {$set: {'cards.$.primary_word': req.body.primary_word,
                 'cards.$.secondary_word': req.body.secondary_word,
             'cards.$.category': req.body.category}}, // list fields you like to change
